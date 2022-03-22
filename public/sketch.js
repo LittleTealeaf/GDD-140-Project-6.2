@@ -8,7 +8,6 @@ fetch('./results.json').then(response => response.json()).then(json => {
 
 function setup() {
     createCanvas(800,600);
-    console.log(data);
 }
 
 function draw() {
