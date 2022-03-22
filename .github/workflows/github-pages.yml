@@ -17,7 +17,7 @@ jobs:
     - name: Update Pip
       run: python -m pip install --upgrade pip
     - name: Install Python Dependencies
-      run: python -m pip install ./python/requirements.txt
+      run: python -m pip install -r ./python/requirements.txt
     - name: Run Script
       run: |
         jupyter nbconvert --to script ./python/notebook.ipynb
