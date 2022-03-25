@@ -77,6 +77,7 @@ function draw() {
 }
 
 function updateOpacities() {
+    // I.. Need... to SIMPLIFY THIS AAAHHHH
     if(hover_index_left != -1) {
         Object.keys(opacities).forEach((lang_1,index) => {
             opacities[lang_1]['left'] = smooth(opacities[lang_1]['left'],hover_index_left == index ? OPACITY_SHOWN : OPACITY_HIDDEN);
