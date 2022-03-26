@@ -91,7 +91,7 @@ function render() {
 }
 
 function interpolate(initial, goal) {
-    return initial + (goal - initial) * 0.05;
+    return initial + (goal - initial) * 0.075;
 }
 
 
