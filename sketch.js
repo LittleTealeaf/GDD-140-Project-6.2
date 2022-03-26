@@ -53,7 +53,6 @@ function setup() {
     side_width = width * 1 / 5;
 
     while (data == null);
-    console.table(data);
     
     lang_height = height / Object.keys(data).length;
 }
@@ -103,8 +102,4 @@ function mouseMoved() {
     } else if (mouseX > width - side_width) {
         hover_index_right = int(mouseY / lang_height);
     }
-}
-
-function mousePressed() {
-    console.table(data);
 }
