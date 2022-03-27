@@ -98,6 +98,8 @@ function render() {
             const left_height = lang_height * index + lang_height / 2;
             const right_height = lang_height * goal_index + lang_height / 2;
 
+            fill_color = color(hover_index_left != -1 ? element_2.color : element.color);
+
             fill_color.setAlpha(255 * element_2.opacity);
             fill(fill_color);
             quad(side_width, left_height - half_height, side_width, left_height + half_height, width - side_width, right_height + half_height, width - side_width, right_height - half_height);
