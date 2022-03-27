@@ -116,16 +116,16 @@ function render() {
                 fill('black');
                 textSize(15);
                 textStyle(BOLD);
-                text(new String(element_2.value).substring(0,4) + "%", width - side_width * 0.9, (findLanguageIndex(element_2.lang) + 1) * lang_height - lang_height * 0.2)
+                text(new String(element_2.value * 100).substring(0,5) + "%", width - side_width * 0.9, (findLanguageIndex(element_2.lang) + 1) * lang_height - lang_height * 0.2)
             });
         } else if(hover_index_right != -1) {
-            data[hover_index_right].values.forEach((element_2) => {
-                if(element_2.lang == element.lang) {
+            element.values.forEach((element_2) => {
+                if(element_2.lang == data[hover_index_right].lang) {
                     stroke('white');
                     fill('black');
                     textSize(15);
                     textStyle(BOLD);
-                    text(new String(element_2.value).substring(0,4) + "%",side_width * 0.6, (index + 1) * lang_height - lang_height * 0.2);
+                    text(new String(element_2.value * 100).substring(0,5) + "%",side_width * 0.6, (index + 1) * lang_height - lang_height * 0.2);
                 }
             })
         }
