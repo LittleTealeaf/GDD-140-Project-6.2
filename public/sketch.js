@@ -127,7 +127,15 @@ function render() {
                 text(new String(element_2['value']).substring(0,4) + "%", width - side_width * 0.9, (findLanguageIndex(element_2['lang']) + 1) * lang_height - lang_height * 0.2)
             });
         } else if(hover_index_right != -1) {
-
+            data[hover_index_right]['values'].forEach((element_2) => {
+                if(element_2['lang'] == element['lang']) {
+                    stroke('white');
+                    fill('black');
+                    textSize(15);
+                    textStyle(BOLD);
+                    text(new String(element_2['value']).substring(0,4) + "%",side_width * 0.6, (index + 1) * lang_height - lang_height * 0.2);
+                }
+            })
         }
     });
 }
@@ -151,7 +159,13 @@ function mouseMoved() {
     hover_index_right = -1;
     if (mouseX < side_width) {
         hover_index_left = int(mouseY / lang_height);
+        if(hover_index_left >= data.length) {
+            hover_index_left = -1;
+        }
     } else if (mouseX > width - side_width) {
         hover_index_right = int(mouseY / lang_height);
+        if(hover_index_right >= data.length) {
+            hover_index_right = -1;
+        }
     }
 }
