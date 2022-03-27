@@ -2,40 +2,12 @@
 
 var data = null;
 var opacities = null;
+var colors = null;
+var raw_data = null;
 
 const OPACITY_DEFAULT = 0.8;
 const OPACITY_HIDDEN = 0.3;
 const OPACITY_SHOWN = 0.9;
-
-fetch('https://raw.githubusercontent.com/ozh/github-colors/master/colors.json').then(response => response.json()).then(colors => {
-    colors['HTML/CSS'] = colors['HTML'];
-    colors['Bash/Shell'] = colors['Shell'];
-    colors['Node.js'] = colors['JavaScript'];
-    colors['Matlab'] = colors['MATLAB'];
-    colors['Delphi'] = { 'color': 'pink' };
-    colors['LISP'] = colors['NewLisp'];
-    colors['COBOL'].color = 'orange';
-
-    fetch('./results.json').then(response => response.json()).then(data_json => {
-        data = Object.keys(data_json).map((key) => (
-            {
-                'lang': key,
-                'color': colors[key]['color'],
-                'opacity_left': OPACITY_DEFAULT,
-                'opacity_right': OPACITY_DEFAULT,
-                'values': Object.keys(data_json[key]).map((key_2) => (
-                    {
-                        'lang': key_2,
-                        'color': colors[key_2]['color'],
-                        'opacity': OPACITY_DEFAULT,
-                        'value': data_json[key][key_2]
-                    }
-                ))
-            }
-        ));
-    });
-});
-
 
 
 var side_width;
@@ -46,12 +18,32 @@ var hover_index_left = -1;
 var hover_index_right = -1;
 
 
+function preload() {
+    colors = loadJSON('colors.json');
+    raw_data = loadJSON('results.json');
+}
 
 function setup() {
     createCanvas(windowWidth - 20, windowHeight - 20);
 
-    side_width = width * 1 / 5;
+    data = Object.keys(raw_data).map((key) => (
+        {
+            'lang': key,
+            'color': colors[key].color,
+            'opacity_left': OPACITY_DEFAULT,
+            'opacity_right': OPACITY_DEFAULT,
+            'values': Object.keys(raw_data[key]).map((key_2) => (
+                {
+                    'lang': key_2,
+                    'color': colors[key_2].color,
+                    'opacity': OPACITY_DEFAULT,
+                    'value': raw_data[key][key_2]
+                }
+            ))
+        }
+    ));
 
+    side_width = width * 1 / 5;
     lang_height = height / Object.keys(data).length;
 }
 
