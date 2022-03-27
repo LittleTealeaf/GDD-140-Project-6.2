@@ -127,7 +127,7 @@ function render() {
                     textStyle(BOLD);
                     text(new String(element_2.value * 100).substring(0,5) + "%",side_width * 0.6, (index + 1) * lang_height - lang_height * 0.2);
                 }
-            })
+            });
         }
     });
 }
