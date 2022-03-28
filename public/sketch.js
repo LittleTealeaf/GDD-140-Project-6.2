@@ -57,8 +57,8 @@ function draw() {
 
 function updateOpacities() {
     data.forEach((element, index) => {
-        element.opacities_left = interpolate(element.opacity_left, hover_index_left == -1 ? OPACITY_DEFAULT : index == hover_index_left ? OPACITY_SHOWN : OPACITY_HIDDEN);
-        element.opacities_right = interpolate(element.opacity_right, hover_index_right == -1 ? OPACITY_DEFAULT : index == hover_index_right ? OPACITY_SHOWN : OPACITY_HIDDEN);
+        element.opacity_left = interpolate(element.opacity_left, hover_index_left == -1 ? OPACITY_DEFAULT : index == hover_index_left ? OPACITY_SHOWN : OPACITY_HIDDEN);
+        element.opacity_right = interpolate(element.opacity_right, hover_index_right == -1 ? OPACITY_DEFAULT : index == hover_index_right ? OPACITY_SHOWN : OPACITY_HIDDEN);
         element.values.forEach(element_2 => {
             opacity = hover_index_left == -1 && hover_index_right == -1 ? OPACITY_DEFAULT * element_2.value : index == hover_index_left || findLanguageIndex(element_2.lang) == hover_index_right ? OPACITY_SHOWN : 0;
             element_2.opacity = interpolate(element_2.opacity, opacity);
@@ -162,4 +162,8 @@ function mouseMoved() {
             hover_index_right = -1;
         }
     }
+}
+
+function mousePressed() {
+    console.table(data)
 }
