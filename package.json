@@ -8,14 +8,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/LittleTealeaf/GDD-140-Template.git"
+    "url": "git+https://github.com/LittleTealeaf/GDD-140-Project-6.2.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/LittleTealeaf/GDD-140-Template/issues"
+    "url": "https://github.com/LittleTealeaf/GDD-140-Project-6.2/issues"
   },
-  "homepage": "https://github.com/LittleTealeaf/GDD-140-Template#readme",
+  "homepage": "https://littletealeaf.github.io/GDD-140-Project-6.2",
   "dependencies": {
     "@types/p5": "1.4.2",
     "p5": "1.4.1"
