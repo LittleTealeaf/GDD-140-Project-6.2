@@ -44,15 +44,18 @@ function setup() {
     ));
 
     side_width = width * 1 / 5;
-    lang_height = height / Object.keys(data).length;
+    lang_height = height / (Object.keys(data).length + 1);
 }
 
 var test = 0;
 
 function draw() {
     background(250);
+    textSize(10);
     updateOpacities();
     render();
+    fill('black');
+    textSize(20);
 }
 
 function updateOpacities() {
@@ -68,25 +71,30 @@ function updateOpacities() {
 
 function render() {
     noStroke();
+
+    textSize(15);
+    fill('black');
+
     data.forEach((element, index) => {
+        textSize(15);
         noStroke();
 
         // Render the Squares
         var fill_color = color(element.color);
         fill_color.setAlpha(255 * element.opacity_left);
         fill(fill_color);
-        rect(0, lang_height * index, side_width, lang_height);
+        rect(0, lang_height * (index+1), side_width, lang_height);
         fill_color.setAlpha(255 * element.opacity_right);
         fill(fill_color);
-        rect(width - side_width, lang_height * index, side_width, lang_height);
+        rect(width - side_width, lang_height * (index + 1), side_width, lang_height);
 
         // Render the Text
         stroke('white');
         fill('black');
-        text(element.lang, side_width * 0.1, (index + 1) * lang_height - lang_height * 0.2);
+        text(element.lang, side_width * 0.1, (index + 2) * lang_height - lang_height * 0.2);
         textSize(15);
         textStyle(BOLD);
-        text(element.lang, width - side_width * 0.4, (index + 1) * lang_height - lang_height * 0.2);
+        text(element.lang, width - side_width * 0.4, (index + 2) * lang_height - lang_height * 0.2);
         noStroke();
 
 
@@ -95,8 +103,8 @@ function render() {
         element.values.forEach((element_2) => {
             const half_height = lang_height * element_2.value / 2;
             const goal_index = findLanguageIndex(element_2.lang);
-            const left_height = lang_height * index + lang_height / 2;
-            const right_height = lang_height * goal_index + lang_height / 2;
+            const left_height = lang_height * (index + 1) + lang_height / 2;
+            const right_height = lang_height * (goal_index + 1) + lang_height / 2;
 
             fill_color = color(hover_index_left != -1 ? element_2.color : element.color);
 
@@ -118,7 +126,7 @@ function render() {
                 fill('black');
                 textSize(15);
                 textStyle(BOLD);
-                text(new String(element_2.value * 100).substring(0,5) + "%", width - side_width * 0.9, (findLanguageIndex(element_2.lang) + 1) * lang_height - lang_height * 0.2)
+                text(new String(element_2.value * 100).substring(0,5) + "%", width - side_width * 0.9, (findLanguageIndex(element_2.lang) + 2) * lang_height - lang_height * 0.2)
             });
         } else if(hover_index_right != -1) {
             element.values.forEach((element_2) => {
@@ -127,11 +135,16 @@ function render() {
                     fill('black');
                     textSize(15);
                     textStyle(BOLD);
-                    text(new String(element_2.value * 100).substring(0,5) + "%",side_width * 0.6, (index + 1) * lang_height - lang_height * 0.2);
+                    text(new String(element_2.value * 100).substring(0,5) + "%",side_width * 0.6, (index + 2) * lang_height - lang_height * 0.2);
                 }
             });
         }
     });
+
+    fill('black');
+    textSize(20);
+    text("Languages Worked With",0,lang_height - 5);
+    text("Languages Want to Work With",width - 300,lang_height - 5);
 }
 
 function findLanguageIndex(language) {
@@ -152,12 +165,12 @@ function mouseMoved() {
     hover_index_left = -1;
     hover_index_right = -1;
     if (mouseX < side_width) {
-        hover_index_left = int(mouseY / lang_height);
+        hover_index_left = int(mouseY / lang_height) - 1;
         if(hover_index_left >= data.length) {
             hover_index_left = -1;
         }
     } else if (mouseX > width - side_width) {
-        hover_index_right = int(mouseY / lang_height);
+        hover_index_right = int(mouseY / lang_height) - 1;
         if(hover_index_right >= data.length) {
             hover_index_right = -1;
         }
