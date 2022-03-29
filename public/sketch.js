@@ -91,10 +91,12 @@ function render() {
         // Render the Text
         stroke('white');
         fill('black');
+        textAlign(LEFT);
         text(element.lang, side_width * 0.1, (index + 2) * lang_height - lang_height * 0.2);
         textSize(15);
         textStyle(BOLD);
-        text(element.lang, width - side_width * 0.4, (index + 2) * lang_height - lang_height * 0.2);
+        textAlign(RIGHT);
+        text(element.lang, width - side_width * 0.1, (index + 2) * lang_height - lang_height * 0.2);
         noStroke();
 
 
@@ -126,7 +128,8 @@ function render() {
                 fill('black');
                 textSize(15);
                 textStyle(BOLD);
-                text(new String(element_2.value * 100).substring(0,5) + "%", width - side_width * 0.9, (findLanguageIndex(element_2.lang) + 2) * lang_height - lang_height * 0.2)
+                textAlign(LEFT);
+                text(new String(element_2.value * 100).substring(0,5) + "%", width - side_width * 0.99, (findLanguageIndex(element_2.lang) + 2) * lang_height - lang_height * 0.2)
             });
         } else if(hover_index_right != -1) {
             element.values.forEach((element_2) => {
@@ -135,7 +138,8 @@ function render() {
                     fill('black');
                     textSize(15);
                     textStyle(BOLD);
-                    text(new String(element_2.value * 100).substring(0,5) + "%",side_width * 0.6, (index + 2) * lang_height - lang_height * 0.2);
+                    textAlign(RIGHT);
+                    text(new String(element_2.value * 100).substring(0,5) + "%",side_width * 0.99, (index + 2) * lang_height - lang_height * 0.2);
                 }
             });
         }
@@ -143,8 +147,13 @@ function render() {
 
     fill('black');
     textSize(20);
+    textAlign(LEFT);
     text("Languages Worked With",0,lang_height - 5);
-    text("Languages Want to Work With",width - 300,lang_height - 5);
+    textAlign(RIGHT);
+    text("Languages Want to Work With",width,lang_height - 5);
+    textSize(10);
+    textAlign(CENTER);
+    text("Compiled from 2021 Stack Overflow Developer Survey",width/2,height-5);
 }
 
 function findLanguageIndex(language) {
@@ -175,8 +184,4 @@ function mouseMoved() {
             hover_index_right = -1;
         }
     }
-}
-
-function mousePressed() {
-    console.table(data)
 }
