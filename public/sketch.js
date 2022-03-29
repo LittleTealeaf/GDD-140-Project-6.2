@@ -26,6 +26,7 @@ function preload() {
 function setup() {
     createCanvas(windowWidth - 20, windowHeight - 20);
 
+    //Map raw data to usable objects
     data = Object.keys(raw_data).map((key) => (
         {
             'lang': key,
@@ -43,6 +44,7 @@ function setup() {
         }
     ));
 
+    //Set width and heights
     side_width = width * 1 / 5;
     lang_height = height / (Object.keys(data).length + 1);
 }
@@ -59,6 +61,7 @@ function draw() {
 }
 
 function updateOpacities() {
+    //Updates the opacities based on the current hover index, aka where the user's mouse is currently
     data.forEach((element, index) => {
         element.opacity_left = interpolate(element.opacity_left, hover_index_left == -1 ? OPACITY_DEFAULT : index == hover_index_left ? OPACITY_SHOWN : OPACITY_HIDDEN);
         element.opacity_right = interpolate(element.opacity_right, hover_index_right == -1 ? OPACITY_DEFAULT : index == hover_index_right ? OPACITY_SHOWN : OPACITY_HIDDEN);
@@ -120,7 +123,7 @@ function render() {
 
     });
 
-    // render the text
+    // render the % text
     data.forEach((element, index) => {
         if (index == hover_index_left) {
             element.values.forEach((element_2) => {
@@ -156,7 +159,9 @@ function render() {
     text("Compiled from 2021 Stack Overflow Developer Survey",width/2,height-5);
 }
 
+
 function findLanguageIndex(language) {
+    //Finds the index of a given language
     for (var i = 0; i < data.length; i++) {
         if (data[i]['lang'] == language) {
             return i;
@@ -166,11 +171,13 @@ function findLanguageIndex(language) {
 }
 
 function interpolate(initial, goal) {
+    //Smoothly interpolates between two values
     return initial + (goal - initial) * 0.075;
 }
 
 
 function mouseMoved() {
+    //Updates index when mouse moves
     hover_index_left = -1;
     hover_index_right = -1;
     if (mouseX < side_width) {
