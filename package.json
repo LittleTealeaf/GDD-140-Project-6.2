@@ -18,6 +18,6 @@
   "homepage": "https://littletealeaf.github.io/GDD-140-Project-6.2",
   "dependencies": {
     "@types/p5": "1.4.2",
-    "p5": "1.4.1"
+    "p5": "1.4.2"
   }
 }
