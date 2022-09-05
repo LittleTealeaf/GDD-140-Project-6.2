@@ -3,4 +3,4 @@ numpy==1.23.1
 jupyter==1.0.0
 urllib3==1.26.11
 requests==2.28.1
-jupyterlab==3.4.4
+jupyterlab==3.4.6
