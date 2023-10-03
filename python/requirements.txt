@@ -1,6 +1,6 @@
 pandas==1.4.4
 numpy==1.23.1
 jupyter==1.0.0
-urllib3==1.26.11
+urllib3==1.26.17
 requests==2.31.0
 jupyterlab==3.4.7
